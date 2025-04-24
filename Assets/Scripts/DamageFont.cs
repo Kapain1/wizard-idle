@@ -25,7 +25,12 @@ public class DamageFont : MonoBehaviour
     }
     //데미지 내용을 MonsterHealth에서 가져오고 색깔을 입힘
     public void SetDamage(int amount,Color color){
-        tmp.text = amount.ToString();
+        Debug.Log($"[SetDamage] amount: {amount}, color: {color}");
+
         tmp.color = color;
+        tmp.text = amount.ToString();
+
+        
+        
     }
 }

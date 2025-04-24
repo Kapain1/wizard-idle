@@ -16,9 +16,11 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 1f;
     public GameObject hitEffectPrefab;
-
     public float hitEffectDestoryTime = 0.2f;
 
+    //크리티컬
+    float criticalChance = 0.2f;
+    int criticalMultiplier = 2;
 
     void Update()
     {
@@ -37,7 +39,10 @@ public class PlayerCombat : MonoBehaviour
         else{
             attackTimer += Time.deltaTime;
             if(attackTimer >= attackInterval){
+                //초기화
                 attackTimer = 0f;
+                attackDamage = 1;
+
                 Attack();
             }
         }
@@ -54,6 +59,7 @@ public class PlayerCombat : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Attack");
         }
     }
+
     //디버그 확인용
     private void OnDrawGizmosSelected(){
         if(attackPoint != null){
@@ -62,18 +68,24 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    //데미지 프레임 맞추기
     public void DoDamage(){
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, attackRange, monsterLayer);
+
+        //크리티컬 체크 및 데미지
+        bool isCritical = UnityEngine.Random.value <= criticalChance;
+        int actualDamage = isCritical ? attackDamage * criticalMultiplier : attackDamage;
         
         if(hit != null){
         var monster = hit.GetComponent<MonsterHealth>();
             if(monster != null){
-            monster.TakeDamage(attackDamage);
+            monster.TakeDamage(actualDamage, isCritical);
             if (hitEffectPrefab != null){
                 GameObject effect = Instantiate(hitEffectPrefab, hit.transform.position, Quaternion.identity);
                 Destroy(effect,hitEffectDestoryTime);
                 }
             }
+
         }
         
     }
