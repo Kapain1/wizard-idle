@@ -27,7 +27,7 @@ public class MonsterHealth : MonoBehaviour
         GameObject bar = Instantiate(hpBarPrefab, transform.position + new Vector3(0, 0.65f, 0),
         Quaternion.identity);
         hpBar = bar.transform;
-        hpFill = bar.transform.Find("HpFill").GetComponent<Image>(); 
+        hpFill = bar.transform.Find("HpFill").GetComponent<Image>();  
         
     }
 
