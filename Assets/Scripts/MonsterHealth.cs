@@ -48,10 +48,9 @@ public class MonsterHealth : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<PlayerCombat>().EndCombat();
         Destroy(hpBar.gameObject);
 
-        animator?.SetTrigger("Death");
         GetComponent<Collider2D>().enabled = false;
         gameObject.layer = LayerMask.NameToLayer("DeadMonster");
-        Destroy(gameObject, 1.5f);
+        Destroy(gameObject);
         
     }
 
