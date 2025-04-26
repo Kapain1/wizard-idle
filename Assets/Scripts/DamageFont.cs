@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class DamageFont : MonoBehaviour
 {
@@ -13,24 +14,16 @@ public class DamageFont : MonoBehaviour
     {
         tmp = GetComponentInChildren<TextMeshProUGUI>();
     }
-    void Start()
-    {
-        Destroy(gameObject,lifeTime);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector3.up * upSpeed * Time.deltaTime);
-    }
-    //데미지 내용을 MonsterHealth에서 가져오고 색깔을 입힘
-    public void SetDamage(int amount,Color color){
-        Debug.Log($"[SetDamage] amount: {amount}, color: {color}");
-
+    
+    public void SetDamage(int damage,Color color){
         tmp.color = color;
-        tmp.text = amount.ToString();
+        tmp.text = damage.ToString();
 
-        
+        transform.DOMoveY(transform.position.y + 1f, 0.5f);
+        tmp.DOFade(0f, 1.7f);
+
+        Destroy(gameObject,lifeTime);
         
     }
 }

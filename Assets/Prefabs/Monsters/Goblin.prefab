@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5544162428741089816}
   - component: {fileID: 9031365517689693995}
   - component: {fileID: -585767772508062745}
+  - component: {fileID: 4328575786352877777}
+  - component: {fileID: 1777714047288877771}
   m_Layer: 3
   m_Name: Goblin
   m_TagString: Untagged
@@ -171,6 +173,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+--- !u!114 &4328575786352877777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273626318199305582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d7905698bea3a49b36f26817fd5921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   hpBarPrefab: {fileID: 8073950057614796346, guid: ecab1c26b1175424b8b68764e9a22f8d, type: 3}
+--- !u!114 &1777714047288877771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273626318199305582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb182174fd91a1b4094a8b1a3f2b0ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   damageTextPrefab: {fileID: 2257056695554797833, guid: fc0d81c52ba0cf74985cc2aae19d838c, type: 3}
-  fontCanvas: {fileID: 0}
+  canvasTransform: {fileID: 0}

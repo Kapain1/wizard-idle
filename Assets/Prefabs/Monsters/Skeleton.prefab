@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 320778464950682629}
   - component: {fileID: 8921510148040035805}
   - component: {fileID: 8794117758873229430}
+  - component: {fileID: 5067461114541158483}
+  - component: {fileID: 1407324000400804577}
   m_Layer: 3
   m_Name: Skeleton
   m_TagString: Untagged
@@ -171,6 +173,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+--- !u!114 &5067461114541158483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903379150778549978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d7905698bea3a49b36f26817fd5921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   hpBarPrefab: {fileID: 8073950057614796346, guid: ecab1c26b1175424b8b68764e9a22f8d, type: 3}
+--- !u!114 &1407324000400804577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903379150778549978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb182174fd91a1b4094a8b1a3f2b0ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   damageTextPrefab: {fileID: 2257056695554797833, guid: fc0d81c52ba0cf74985cc2aae19d838c, type: 3}
   canvasTransform: {fileID: 0}

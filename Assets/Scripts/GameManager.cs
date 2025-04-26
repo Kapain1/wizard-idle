@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour 
+public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public float coinCount;
+    public int gold;
     
     void Awake()
     {
@@ -17,7 +17,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CoinIncrease(){
-        coinCount++;
-    }
 }
