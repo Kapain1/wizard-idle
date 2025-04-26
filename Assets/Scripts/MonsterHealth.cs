@@ -76,6 +76,8 @@ public class MonsterHealth : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("DeadMonster");
         Destroy(gameObject);
         
+        GameManager.Instance.CoinIncrease();
+        Debug.Log("코인 개수 = "+ GameManager.Instance.coinCount); 
     }
 
     void UpdateHpBar(){
