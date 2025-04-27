@@ -6,10 +6,10 @@ public class MonsterHpBar : MonoBehaviour
     public GameObject hpBarPrefab;
     private Image hpFill;
     private Transform hpBar; 
-    void Start()
+    void Start() 
     {
-        //체력바 생성
-        GameObject bar = Instantiate(hpBarPrefab, transform.position + new Vector3(0, 0.65f, 0),
+        
+        GameObject bar = Instantiate(hpBarPrefab, transform.position + new Vector3(0, -1, 0),
         Quaternion.identity);
         hpBar = bar.transform;
         hpFill = bar.transform.Find("HpFill").GetComponent<Image>(); 
@@ -20,7 +20,7 @@ public class MonsterHpBar : MonoBehaviour
         hpFill.fillAmount = ratio;
 
         if(hpBar != null){
-            hpBar.position = transform.position + new Vector3(0,0.65f, 0);
+            hpBar.position = transform.position + new Vector3(0,-1f, 0);
         } 
     }
 

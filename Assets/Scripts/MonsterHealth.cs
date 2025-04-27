@@ -17,6 +17,7 @@ public class MonsterHealth : MonoBehaviour
     //애니메이션
     private Animator animator;
 
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -27,9 +28,6 @@ public class MonsterHealth : MonoBehaviour
         textScript = GetComponent<DamageText>();
         //몬스터 애니 저장
         animator = GetComponent<Animator>(); 
-
-         
-        
         
     }
 
@@ -47,10 +45,10 @@ public class MonsterHealth : MonoBehaviour
         //Hp바
         hpBarScript.UpdateHpBar(currentHealth, maxHealth);
         
-        if(currentHealth <= 0){
+        if(currentHealth <= 0){ 
             Die();
-            hpBarScript.DestroyHpBar();
-        }
+            
+        } 
     }
 
     void Die(){
@@ -63,6 +61,10 @@ public class MonsterHealth : MonoBehaviour
         
         GameManager.Instance.gold += 1;
         Debug.Log("코인 개수 = "+ GameManager.Instance.gold);
+
+        hpBarScript.DestroyHpBar(); 
+
+        
     }
 
     

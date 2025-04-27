@@ -12,7 +12,7 @@ public class PlayerCombat : MonoBehaviour
     //플레이어 전투
     public float attackInterval = 1f;
     private float attackTimer = 0f;
-    public int attackDamage = 1;
+    public int attackDamage = 10;
     public Transform attackPoint;
     public float attackRange = 1f;
     public GameObject hitEffectPrefab;
@@ -41,7 +41,7 @@ public class PlayerCombat : MonoBehaviour
             if(attackTimer >= attackInterval){
                 //초기화
                 attackTimer = 0f;
-                attackDamage = 1;
+                attackDamage = 10;
 
                 Attack();
             }
@@ -51,6 +51,7 @@ public class PlayerCombat : MonoBehaviour
     //전투 종료
     public void EndCombat(){
         isFighting = false;
+        
     }
     //공격
     void Attack(){
@@ -70,23 +71,37 @@ public class PlayerCombat : MonoBehaviour
 
     //데미지 프레임 맞추기
     public void DoDamage(){
-        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, attackRange, monsterLayer);
-
+        Collider2D monsterHit = Physics2D.OverlapCircle(attackPoint.position, attackRange, monsterLayer);
+        
         //크리티컬 체크 및 데미지
         bool isCritical = UnityEngine.Random.value <= criticalChance;
         int actualDamage = isCritical ? attackDamage * criticalMultiplier : attackDamage;
         
-        if(hit != null){
-        var monster = hit.GetComponent<MonsterHealth>();
-            if(monster != null){
-            monster.TakeDamage(actualDamage, isCritical);
-            if (hitEffectPrefab != null){
-                GameObject effect = Instantiate(hitEffectPrefab, hit.transform.position, Quaternion.identity);
-                Destroy(effect,hitEffectDestoryTime);
+
+        if(monsterHit != null){
+        var monster = monsterHit.GetComponent<MonsterHealth>();
+        var boss = monsterHit.GetComponent<BossHealth>();
+        int layer = monsterHit.gameObject.layer;
+
+            
+                if(monster != null && layer == LayerMask.NameToLayer("Monster")){
+                    monster.TakeDamage(actualDamage, isCritical);
+                }
+                
+            else if(boss != null){
+                if(boss != null && layer == LayerMask.NameToLayer("Boss")){
+                    boss.TakeDamage(actualDamage, isCritical);
                 }
             }
+            
 
-        }
+            if (hitEffectPrefab != null){
+                GameObject effect = Instantiate(hitEffectPrefab, monsterHit.transform.position, Quaternion.identity);
+                Destroy(effect,hitEffectDestoryTime); 
+                }
+            
+
+        } 
         
     }
     

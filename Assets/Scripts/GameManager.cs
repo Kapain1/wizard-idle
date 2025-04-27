@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int gold;
+    public int currentStage; 
     
     void Awake()
     {
