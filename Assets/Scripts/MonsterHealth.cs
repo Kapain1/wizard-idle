@@ -26,8 +26,7 @@ public class MonsterHealth : MonoBehaviour
         hpBarScript = GetComponent<MonsterHpBar>();
         //text 스크립트 불러오기
         textScript = GetComponent<DamageText>();
-        //몬스터 애니 저장
-        animator = GetComponent<Animator>(); 
+        
         
     }
 
@@ -38,8 +37,7 @@ public class MonsterHealth : MonoBehaviour
         
         
         Debug.Log("몬스터의 남은 체력" + currentHealth);
-        // 피격 애니 재생
-        animator?.SetTrigger("Hit");
+        
         //텍스트
         textScript.TextRecall(attackDamage,isCritical);
         //Hp바

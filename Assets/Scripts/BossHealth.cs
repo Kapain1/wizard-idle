@@ -12,8 +12,6 @@ public class BossHealth : MonoBehaviour
     //텍스트
     private DamageText textScript;
 
-    //애니메이션
-    private Animator animator;
     void Start()
     {
         currentHealth = maxHealth;
@@ -22,16 +20,16 @@ public class BossHealth : MonoBehaviour
         hpBarScript = GetComponent<MonsterHpBar>();
         //text 스크립트 불러오기
         textScript = GetComponent<DamageText>();
-        //몬스터 애니 저장
-        animator = GetComponent<Animator>(); 
+
+
+        
     }
 
     public void TakeDamage(int attackDamage, bool isCritical){
         currentHealth -= attackDamage;
 
         Debug.Log("몬스터의 남은 체력" + currentHealth);
-        // 피격 애니 재생
-        animator?.SetTrigger("Hit");
+        
         //텍스트
         textScript.TextRecall(attackDamage,isCritical);
         //Hp바
@@ -44,13 +42,26 @@ public class BossHealth : MonoBehaviour
     void Die(){ 
 
         GameObject.FindWithTag("Player").GetComponent<PlayerCombat>().EndCombat();
-        Destroy(gameObject);
+        GetComponent<Collider2D>().enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("DeadMonster");
         hpBarScript.DestroyHpBar(); 
         GameManager.Instance.gold += 10;
         Debug.Log("코인 개수 = "+ GameManager.Instance.gold);
 
         Debug.Log("Boss defeated!");
 
-        GameManager.Instance.currentStage++;
+        //암전 효과
+        ScreenFade screenFade = FindAnyObjectByType<ScreenFade>();
+        if(screenFade != null)
+        screenFade.FadeOut(1f, () => {
+            Destroy(gameObject);
+            GameManager.Instance.LoadNextStage();
+        });
+        else{
+            Debug.LogError("ScreenFade를 찾지 못했습니다!");
+            Destroy(gameObject); // 예외처리
+            GameManager.Instance.LoadNextStage();
+        }
+        
     }
 }

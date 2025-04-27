@@ -83,8 +83,7 @@ public class PlayerCombat : MonoBehaviour
         var boss = monsterHit.GetComponent<BossHealth>();
         int layer = monsterHit.gameObject.layer;
 
-            
-                if(monster != null && layer == LayerMask.NameToLayer("Monster")){
+            if(monster != null && layer == LayerMask.NameToLayer("Monster")){
                     monster.TakeDamage(actualDamage, isCritical);
                 }
                 
