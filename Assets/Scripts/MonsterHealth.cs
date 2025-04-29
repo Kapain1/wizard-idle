@@ -58,6 +58,8 @@ public class MonsterHealth : MonoBehaviour
         Destroy(gameObject);
         
         GameManager.Instance.gold += 1;
+        UIManager.Instance.UpdateGold(); 
+
         Debug.Log("코인 개수 = "+ GameManager.Instance.gold);
 
         hpBarScript.DestroyHpBar(); 

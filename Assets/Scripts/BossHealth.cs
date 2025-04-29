@@ -46,6 +46,7 @@ public class BossHealth : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("DeadMonster");
         hpBarScript.DestroyHpBar(); 
         GameManager.Instance.gold += 10;
+        UIManager.Instance.UpdateGold(); 
         Debug.Log("코인 개수 = "+ GameManager.Instance.gold);
 
         Debug.Log("Boss defeated!");
