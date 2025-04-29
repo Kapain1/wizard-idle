@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    public int maxHealth = 50;
+    public int maxHealth;
+    public int baseHp = 50;
     private int currentHealth;
-
+    public float hpGrowthRate = 1.5f;
 
     //HP바
     private MonsterHpBar hpBarScript;
@@ -14,6 +15,7 @@ public class BossHealth : MonoBehaviour
 
     void Start()
     {
+        maxHealth = (int)Mathf.Round(baseHp * Mathf.Pow(hpGrowthRate, GameManager.Instance.textStage));
         currentHealth = maxHealth;
 
         //Hpbar 스크립트 불러오기

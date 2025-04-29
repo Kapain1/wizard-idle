@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,8 +6,11 @@ using UnityEngine.UI;
 public class MonsterHealth : MonoBehaviour
 {
     //체력
-    public int maxHealth = 10;
+    public int maxHealth;
+    public float baseHp = 10f;
     private int currentHealth;
+    public float hpGrowthRate = 1.15f;
+
 
     //HP바
     private MonsterHpBar hpBarScript;
@@ -14,12 +18,13 @@ public class MonsterHealth : MonoBehaviour
     //텍스트
     private DamageText textScript;
 
-    //애니메이션
-    private Animator animator;
+    
 
 
     void Start()
     {
+        maxHealth = (int)Mathf.Round(baseHp * Mathf.Pow(hpGrowthRate, GameManager.Instance.textStage));
+
         currentHealth = maxHealth;
 
         //Hpbar 스크립트 불러오기
